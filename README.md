@@ -1,0 +1,2 @@
+# AutoLogin
+ID、Pass保護されたサイトへ自動的にログインを行うGreasemonkeyスクリプト
