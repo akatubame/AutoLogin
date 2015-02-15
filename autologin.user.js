@@ -21,9 +21,9 @@
 //  ・inputs：入力するフォームのINPUTタグ (複数指定可)
 //     ┃
 //     ┣ input1 ━┳ xpath (INPUTタグのXPath)
-//     ┃　　　　　┗ text  (入力する内容)
+//     ┃         ┗ text  (入力する内容)
 //     ┣ input2 ━┳ xpath
-//     ┃ 　　　 　┗ text 
+//     ┃         ┗ text 
 //     ┗ submit ━━ xpath (入力後にクリックするINPUTタグのXPath)
 // ---------------------------------------------------------------------------
 var site = {
