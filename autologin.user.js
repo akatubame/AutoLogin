@@ -24,7 +24,7 @@
 //     ┃　　　　　┗ text  (入力する内容)
 //     ┣ input2 ━┳ xpath
 //     ┃ 　　　 　┗ text 
-//　　 ┗ submit ━━ xpath (入力後にクリックするINPUTタグのXPath)
+//     ┗ submit ━━ xpath (入力後にクリックするINPUTタグのXPath)
 // ---------------------------------------------------------------------------
 var site = {
 	evernote : {
