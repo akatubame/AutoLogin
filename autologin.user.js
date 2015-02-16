@@ -62,33 +62,43 @@ var site = {
 (function () {
 	// alert(document.URL); // デバッグ用 (コメントアウトでアラート表示)
 	for (var i in site) {
+		var thisSite = site[i];
 		
 		// URLのマッチ判定 (他サイトでの誤作動防止)
-		// alert( site[i]["url"] ); // デバッグ用
-		if ( document.URL.indexOf( site[i]["url"] ) == -1 )
+		// alert( thisSite["url"] ); // デバッグ用
+		if ( document.URL.indexOf( thisSite["url"] ) == -1 )
 			continue;
-			
+		
 		// フォーム入力 (submitボタンを除く)
-		for (var j in site[i]["inputs"]) {
-			if (j == "submit")
+		for (var inputName in thisSite["inputs"]) {
+			if (inputName == "submit")
 				continue;
 			
-			var e   = XPathGetItem( site[i]["inputs"][j]["xpath"] );
-			e.value = site[i]["inputs"][j]["text"];
-			// alert(e.innerHTML); // デバッグ用
+			var thisInput = thisSite["inputs"][inputName];
+			setElementValue( thisInput["xpath"], thisInput["text"] );
+			// alert( thisInput["xpath"] + " - " + thisInput["text"] ); // デバッグ用
 		}
 		
 		// 送信
-		var e2 = XPathGetItem( site[i]["inputs"]["submit"]["xpath"] );
-		e2.click();
+		clickElement( thisSite["inputs"]["submit"]["xpath"] );
 	}
 })();
 
 // -------------------------------------------------------
 // 関数
 // -------------------------------------------------------
-// XPathで要素をアイテムのみ取得
-function XPathGetItem(xpath)  {
+// 指定XPathのノードを取得
+function getElementByXpath(xpath) {
 	var e = document.evaluate(xpath, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
 	return e.snapshotItem(0);
+}
+// 指定XPathのノードのvalue要素を変更する
+function setElementValue(xpath, value) {
+	var e = getElementByXpath(xpath);
+	e.value = value;
+}
+// 指定XPathのノードをクリック
+function clickElement(xpath) {
+	var e = getElementByXpath(xpath);
+	e.click();
 }
