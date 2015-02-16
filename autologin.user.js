@@ -61,7 +61,7 @@ var site = {
 // -------------------------------------------------------
 (function () {
 	// alert(document.URL); // デバッグ用 (コメントアウトでアラート表示)
-	for (i in site) {
+	for (var i in site) {
 		
 		// URLのマッチ判定 (他サイトでの誤作動防止)
 		// alert( site[i]["url"] ); // デバッグ用
@@ -69,7 +69,7 @@ var site = {
 			continue;
 			
 		// フォーム入力 (submitボタンを除く)
-		for (j in site[i]["inputs"]) {
+		for (var j in site[i]["inputs"]) {
 			if (j == "submit")
 				continue;
 			
