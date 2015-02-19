@@ -29,7 +29,7 @@
 //     …
 //     ┗ submit ━━ xpath (入力後にクリックするINPUTタグのXPath)
 // ---------------------------------------------------------------------------
-var site = {
+var webSite = {
 	// サンプルURL。Evernoteのログインページ
 	// https://www.evernote.com/Login.action に飛ぶと自動で以下の情報が入力される
 	evernote : {
@@ -62,26 +62,25 @@ var site = {
 // -------------------------------------------------------
 (function () {
 	// alert(document.URL); // デバッグ用 (コメントアウトでアラート表示)
-	for (var i in site) {
-		var thisSite = site[i];
+	for (var i in webSite) {
 		
 		// URLのマッチ判定 (他サイトでの誤作動防止)
-		// alert( thisSite["url"] ); // デバッグ用
-		if ( document.URL.indexOf( thisSite["url"] ) == -1 )
+		// alert( webSite[i].url ); // デバッグ用
+		if ( document.URL.indexOf( webSite[i].url ) == -1 )
 			continue;
 		
 		// フォーム入力 (submitボタンを除く)
-		for (var inputName in thisSite["inputs"]) {
+		for (var inputName in webSite[i].inputs) {
 			if (inputName == "submit")
 				continue;
 			
-			var thisInput = thisSite["inputs"][inputName];
-			setElementValue( thisInput["xpath"], thisInput["text"] );
-			// alert( thisInput["xpath"] + " - " + thisInput["text"] ); // デバッグ用
+			var thisInput = webSite[i].inputs[inputName];
+			setElementValue( thisInput.xpath, thisInput.text );
+			// alert( thisInput.xpath + " - " + thisInput.text ); // デバッグ用
 		}
 		
 		// 送信
-		clickElement( thisSite["inputs"]["submit"]["xpath"] );
+		clickElement( webSite[i].inputs["submit"].xpath );
 	}
 })();
 
